@@ -4,7 +4,7 @@
 In Foundry: **Add-on Modules → Install Module**, paste this manifest URL:
 
 ```
-https://github.com/OWNER/sf2e-quick-reload/releases/latest/download/module.json
+https://github.com/alocay/sf2e-quick-reload/releases/latest/download/module.json
 ```
 
 Requires the [PF2e HUD](https://foundryvtt.com/packages/pf2e-hud) module. Works in SF2e and PF2e worlds.
