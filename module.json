@@ -1,0 +1,46 @@
+{
+  "id": "sf2e-quick-reload",
+  "title": "SF2e Quick Reload (for PF2e HUD)",
+  "description": "Adds a Reload button to PF2e HUD (token and persistent HUD). One click reloads the character's held weapon from their own ammo, and posts a chat message if they're out.",
+  "version": "0.6.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "GM"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "sf2e",
+        "type": "system"
+      },
+      {
+        "id": "pf2e",
+        "type": "system"
+      }
+    ],
+    "requires": [
+      {
+        "id": "pf2e-hud",
+        "type": "module"
+      }
+    ]
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "styles": [
+    "styles/quick-reload.css"
+  ],
+  "url": "https://github.com/OWNER/sf2e-quick-reload",
+  "manifest": "https://github.com/OWNER/sf2e-quick-reload/releases/latest/download/module.json",
+  "download": "https://github.com/OWNER/sf2e-quick-reload/releases/download/v0.6.0/module.zip",
+  "bugs": "https://github.com/OWNER/sf2e-quick-reload/issues",
+  "readme": "https://github.com/OWNER/sf2e-quick-reload/blob/main/README.md",
+  "changelog": "https://github.com/OWNER/sf2e-quick-reload/blob/main/CHANGELOG.md",
+  "license": "LICENSE"
+}

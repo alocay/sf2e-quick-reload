@@ -1,0 +1,72 @@
+/* Token HUD lays the sidebar icons out in 5 columns; make room for the Reload button. */
+#pf2e-hud-token [data-panel="sidebars"]:has(> .qr-reload) {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* Persistent HUD: the sidebar row is a fixed 10.434em (5 icons). Widen it to fit a 6th
+   so the button doesn't spill onto the shortcuts page counter next to it. */
+#pf2e-hud-persistent:has([data-panel="sidebars"] > .qr-reload) {
+  grid-template-columns:
+    [full-start menu-start] var(--columns-icon)
+    [menu-end portrait-start] var(--columns-portrait)
+    [portrait-end info-start] var(--columns-icon)
+    [info-end statistics-start] var(--column-2fr)
+    [statistics-end resources-start] var(--column-1fr)
+    [resources-end sidebars-start] 12.52em
+    [sidebars-end stretch-start] auto
+    [stretch-end full-end];
+}
+
+.pf2e-hud-element .qr-reload {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.pf2e-hud-element .qr-reload .qr-icon {
+  width: 1.25em;
+  height: 1.25em;
+  display: block;
+  overflow: visible;
+}
+.pf2e-hud-element .qr-reload.qr-none {
+  opacity: var(--disabled-opacity, 0.4);
+  cursor: default;
+}
+.pf2e-hud-element .qr-reload.qr-empty {
+  color: #e0574f;
+}
+/* Small count in the top-right corner, kept inside the button's own space */
+.pf2e-hud-element .qr-reload .qr-badge {
+  position: absolute;
+  top: -0.45em;
+  right: -0.55em;
+  font-size: 0.55em;
+  line-height: 1.1;
+  padding: 0 0.2em;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  pointer-events: none;
+}
+.pf2e-hud-element .qr-reload.qr-busy {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Chat card for failures */
+.chat-message .qr-card {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+.chat-message .qr-card img {
+  width: 36px;
+  height: 36px;
+  border: none;
+  flex: 0 0 36px;
+}
+.chat-message .qr-card.qr-fail p {
+  margin: 0;
+}
