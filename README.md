@@ -14,6 +14,8 @@ https://github.com/alocay/sf2e-quick-reload/releases/latest/download/module.json
 
 ## How to use
 
+![Reload button in PF2e HUD's sidebar icon row](images/reload-button.png)
+
 The button is at the end of the HUD's row of sidebar icons, on both the token HUD and the persistent HUD. Players only see it on characters they own.
 
 - **Number on the button:** rounds or charges loaded in the held weapon.
