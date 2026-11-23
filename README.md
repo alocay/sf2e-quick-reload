@@ -1,46 +1,53 @@
-# SF2e Quick Reload (for PF2e HUD)
+# SF2e Quick Reload
+
+Adds a **Reload** button to the [PF2e HUD](https://foundryvtt.com/packages/pf2e-hud) module. One click reloads the weapon your character is holding, so you don't have to open the character sheet.
+
+**Requires:** Foundry VTT v13–v14 and PF2e HUD. Created for use in SF2e, but should work in PF2e worlds.
 
 ## Install
-In Foundry: **Add-on Modules → Install Module**, paste this manifest URL:
+
+In Foundry, go to **Add-on Modules → Install Module** and paste this manifest URL:
 
 ```
 https://github.com/alocay/sf2e-quick-reload/releases/latest/download/module.json
 ```
 
-Requires the [PF2e HUD](https://foundryvtt.com/packages/pf2e-hud) module. Works in SF2e and PF2e worlds.
+## How to use
 
-Adds a **Reload** button (↻) to PF2e HUD, at the end of the row of sidebar icons (Actions / Items / Spells / Skills / Extras), on both the token HUD and the persistent HUD. Works in SF2e and PF2e.
+The button is at the end of the HUD's row of sidebar icons, on both the token HUD and the persistent HUD. Players only see it on characters they own.
 
-## What it does
-- Finds the weapon your character is **holding** that takes loaded ammo. If more than one held weapon needs reloading, it asks which.
-- Loads it from your inventory, using the same reload code as the character sheet's Reload menu:
-  - **Magazine weapons** (most SF2e guns): if the weapon is empty, it loads the fullest magazine. If the loaded magazine is partly used, it swaps it for a fuller one and puts the used one back in your inventory.
-  - **Loose rounds** (capacity weapons): fills the weapon, or loads as many rounds as you have.
-- Prefers the kind of ammo that's already loaded, so special ammo stays in.
-- Posts the system's normal "Reload" action card in chat.
-- **Out of ammo / wrong ammo** → posts a chat message saying so, and points out compatible ammo that's stowed (in a backpack) and has to be retrieved first.
-- Already full → a small notification and nothing else.
+- **Number on the button:** rounds or charges loaded in the held weapon.
+- **Red:** the weapon is empty. **Faded:** nothing in hand needs reloading.
+- **Hover:** shows the load of every held weapon.
 
-The badge on the button shows the loaded count of the first held weapon. The tooltip lists every held weapon's load. The icon is red when empty and faded when nothing in hand needs reloading.
+Clicking it:
+
+- Reloads the held weapon. If two held weapons need reloading, it asks which one.
+- **Batteries and magazines:** loads the fullest one. A partly used one is swapped for a fuller one, and the old one goes back in the inventory.
+- **Loose rounds:** fills the weapon, or loads as many as you have.
+- Prefers the kind of ammo already loaded.
+- Skips batteries and chem tanks above the weapon's grade (a tactical weapon takes commercial or tactical batteries).
+- Ignores ammo stowed in a backpack or other container, unless **Allow stowed ammo** is on.
+- Posts the system's normal Reload card in chat.
+- If it can't reload, posts a message saying why: no ammo, only higher-grade batteries, or ammo that's stowed.
 
 ## Settings
-- **Allow stowed ammo** (world, off by default): also use ammo inside backpacks/containers. The chat card notes which container it came from.
-- **Most charges wins** (world, off by default): pick the battery/magazine with the most charges, even if it's a different kind than the one loaded. Never picks one that's too high a grade.
-- **Show Reload button in PF2e HUD** (per player)
-- **Whisper 'no ammo' messages** (world): send failure messages only to the player and the GM.
+
+| Setting | Default | What it does |
+|---|---|---|
+| Show Reload button in PF2e HUD | On | Per player. Hides the button for that player. |
+| Allow stowed ammo | Off | Also uses ammo inside containers. The chat card notes which container it came from. |
+| Most charges wins | Off | Picks the battery or magazine with the most charges, even if it's a different kind than the one loaded. |
+| Whisper 'no ammo' messages | Off | Only the player and the GM see "can't reload" messages. |
 
 ## Macro
+
 ```js
-game.modules.get("sf2e-quick-reload").api.reload();          // selected token / your character
-game.modules.get("sf2e-quick-reload").api.reload(someActor);
+game.modules.get("sf2e-quick-reload").api.reload();
 ```
 
-Requires: PF2e HUD. Doesn't need PF2e HUD Colors, and doesn't conflict with it.
-
-## Releasing a new version (maintainer notes)
-1. Update `CHANGELOG.md` and commit.
-2. On GitHub: **Releases → Draft a new release**, create a tag like `v0.7.0`, publish.
-3. The **Release** workflow fills the version and links into `module.json`, builds `module.zip`, and attaches both to the release. Nothing else to edit by hand.
+Reloads the selected token's held weapon, or your assigned character's.
 
 ## License
-MIT. See [LICENSE](LICENSE).
+
+MIT
